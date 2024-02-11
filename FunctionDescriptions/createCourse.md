@@ -1,3 +1,11 @@
+### Authors
+    
+Mihails Daņilovs, md22039
+Rolands Pučeta, rp22046
+Kristofers Semjonovs, ks22110
+Aleksis Volrāts, av22110
+Ralfs Čipāns, rc22007
+
 ### Function Description for "Create Course" (Identifikators: KURS_001)
 
 #### Overview
