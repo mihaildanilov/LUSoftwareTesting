@@ -156,31 +156,66 @@ ErrorCode createCourse(const string &courseName, const string &courseCategory, c
 /// TESTĒŠANAS FUNKCIJA DATU PĀRBAUDĒM (TEST CASES)
 void functionTesting()
 {
-    // TEST CASE 1 (example)
-    Image validImage = {"JPEG", 1024 * 1024};
-    ErrorCode result1 = createCourse("Course 1", "Category 1", validImage, "Description 1", "49.99");
-    if (result1 == SUCCESS)
+    char choice;
+    do
     {
-        cout << "#1: Passed" << endl;
-    }
-    else
-    {
-        cout << "#1: Failed" << endl;
-    }
+        // Prompt user to input test case details
+        cout << "Enter test case details:" << endl;
 
-    // TEST CASE 2 (example)
-    Image validImage2 = {"JPEG", 1024 * 1024};
-    ErrorCode result2 = createCourse("", "Category 2", validImage2, "Description 2", "99.99");
-    if (result2 == ERROR_001)
-    {
-        cout << "#2: Passed" << endl;
-    }
-    else
-    {
-        cout << "#2: Failed" << endl;
-    }
+        string name, category, description, price, format, expectedOutcome;
+        size_t imageSize;
 
-    // Pievienojiet vēl testa gadījumus pēc nepieciešamības...
+        cout << "Course name: ";
+        getline(cin, name);
+        cout << name << endl;
+
+        cout << "Category: ";
+        getline(cin, category);
+        cout << category << endl;
+
+        cout << "Description: ";
+        getline(cin, description);
+        cout << description << endl;
+
+        cout << "Price: ";
+        getline(cin, price);
+        cout << price << endl;
+
+        cout << "Image format (JPEG/JPG/PNG): ";
+        getline(cin, format);
+        cout << format << endl;
+
+        cout << "Image size (in bytes): ";
+        cin >> imageSize;
+        cout << imageSize << endl;
+        cin.ignore(); // Clear the newline character from the input buffer
+
+        cout << "Expected outcome (SUCCESS or ERROR_XYZ): ";
+        getline(cin, expectedOutcome);
+        cout << expectedOutcome << endl;
+
+        // Create Image object
+        Image image = {format, imageSize};
+
+        // Call createCourse function with the provided test case
+        ErrorCode result = createCourse(name, category, image, description, price);
+
+        // Print result
+        if (getErrorMessage(result) == expectedOutcome)
+        {
+            cout << "Test case passed!" << endl;
+        }
+        else
+        {
+            cout << "Test case failed. Expected: " << expectedOutcome << ", Actual: " << getErrorMessage(result) << endl;
+        }
+
+        // Ask if the user wants to add another test case
+        cout << "Do you want to add another test case? (y/n): ";
+        cin >> choice;
+        cin.ignore(); // Clear the newline character from the input buffer
+
+    } while (tolower(choice) == 'y');
 }
 
 int main()
@@ -206,7 +241,7 @@ int main()
     /// Izsaukums testēšanas funkcijai
     try
     {
-        //functionTesting(); // Atkomentēt pēc nepieciešamības
+        functionTesting(); // Atkomentēt pēc nepieciešamības
     }
     catch (string error)
     {
