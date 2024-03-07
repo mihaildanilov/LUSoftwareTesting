@@ -10,8 +10,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <regex>
-#include <sstream>
 
 using namespace std;
 
@@ -154,10 +152,42 @@ ErrorCode createCourse(const string &courseName, const string &courseCategory, c
 
     return SUCCESS;
 }
+
+/// TESTĒŠANAS FUNKCIJA DATU PĀRBAUDĒM (TEST CASES)
+void functionTesting()
+{
+    // TEST CASE 1 (example)
+    Image validImage = {"JPEG", 1024 * 1024};
+    ErrorCode result1 = createCourse("Course 1", "Category 1", validImage, "Description 1", "49.99");
+    if (result1 == SUCCESS)
+    {
+        cout << "#1: Passed" << endl;
+    }
+    else
+    {
+        cout << "#1: Failed" << endl;
+    }
+
+    // TEST CASE 2 (example)
+    Image validImage2 = {"JPEG", 1024 * 1024};
+    ErrorCode result2 = createCourse("", "Category 2", validImage2, "Description 2", "99.99");
+    if (result2 == ERROR_001)
+    {
+        cout << "#2: Passed" << endl;
+    }
+    else
+    {
+        cout << "#2: Failed" << endl;
+    }
+
+    // Pievienojiet vēl testa gadījumus pēc nepieciešamības...
+}
+
 int main()
 {
     try
     { /// Pārbaudes nolūkiem (datu testēšanai) mainiet vērtības "Image courseImage" un "ErrorCode result"
+        /// Vēlams, ka tiek izmantota functionTesting() funkcija, lai testētu funkciju createCourse()
         /// Formāts priekšskatījuma attēlam(courseImage): {string formāts, size_t izmērs_baitos}
         /// Atļautie formāti: "JPEG", "JPG", "PNG"
         Image courseImage = {"PNG", 3 * 1024 * 1024};
@@ -167,6 +197,16 @@ int main()
         {
             throw getErrorMessage(result);
         }
+    }
+    catch (string error)
+    {
+        cout << error << endl;
+    }
+
+    /// Izsaukums testēšanas funkcijai
+    try
+    {
+        //functionTesting(); // Atkomentēt pēc nepieciešamības
     }
     catch (string error)
     {
