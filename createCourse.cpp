@@ -12,7 +12,7 @@
 
 using namespace std;
 
-// Define error codes and corresponding error messages
+// Nosaka kļūdu kodus un atbilstošos kļūdu ziņojumus
 enum ErrorCode
 {
     SUCCESS,
@@ -45,28 +45,28 @@ string getErrorMessage(ErrorCode error)
     }
 }
 
-// Dummy structure to represent an image
+// Maketa struktūra, kas raksturo attēlu
 struct Image
 {
     string format; // "JPEG", "JPG", "PNG"
-    size_t size;   // Size in bytes
+    size_t size;   // Attēla izmērs baitos
 };
 
-// Function to create a course
+// Funkcija, lai izveidotu kursu
 ErrorCode createCourse(const string &courseName, const string &courseCategory, const Image &previewImage, const string &courseDescription, double coursePrice)
 {
-    // Validate mandatory fields
+    // Pārbauda obligātos laukus
     if (courseName.empty() || courseCategory.empty() || courseDescription.empty() || coursePrice < 0)
     {
         return ERROR_001;
     }
-    // Validate input lengths and formats
+    // Pārbauda ievades garumu un formātus
     if (courseName.length() > 100 || courseCategory.length() > 100 || courseDescription.length() > 1000)
     {
         return ERROR_009;
     }
     if (previewImage.size > 3 * 1024 * 1024)
-    { // Image size exceeds 3 MB
+    { // Pārbauda attēla izmēru (maksimālais izmērs 3MB)
         return ERROR_004;
     }
     if (previewImage.format != "JPEG" && previewImage.format != "JPG" && previewImage.format != "PNG")
@@ -74,7 +74,7 @@ ErrorCode createCourse(const string &courseName, const string &courseCategory, c
         return ERROR_011;
     }
 
-    // Simulate storing the course in a database
+    // Simulē kursa saglabāšanu datu bāzē
     cout << "Kurss izveidots!" << endl;
     cout << "Kursa nosaukums: " << courseName << ", Kategorija: " << courseCategory << ", Cena: " << coursePrice << endl;
 
