@@ -26,11 +26,11 @@ bld/
 .vs/
 
 # Ignore NuGet Packages
-packages/
+# packages/
 # Uncomment below if you're using PackageReference instead
-# !**/packages.config
-# !**/*.csproj
-# !**/*.vbproj
+!**/packages.config
+!**/*.csproj
+!**/*.vbproj
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
